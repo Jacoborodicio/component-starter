@@ -3,30 +3,28 @@ const common = require("./webpack.config.common");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const detectPort = require("detect-port");
-const inquirer = require("inquirer");
+const { input } = require("@inquirer/prompts");
 
 const DEFAULT_PORT = 3000;
 
-const getPort = async () => {
-  const port = await detectPort(DEFAULT_PORT);
-  if (port === DEFAULT_PORT) {
-    return port;
+const getFinalPort = async () => {
+  const finalPort = await detectPort(DEFAULT_PORT);
+  if (finalPort === DEFAULT_PORT) {
+    return finalPort;
   }
   // If the Default Port is not available, ask the user if they want to use the next available port
-  const { useNextPort } = await inquirer.prompt([
-    {
-      type: "confirm",
-      name: "useNextPort",
-      message: `Port ${DEFAULT_PORT} is already in use. Would you like to run the app on port ${port}?`,
-    },
-  ]);
-  return useNextPort ? port : null;
+  const shouldUseAnotherPort = await input({
+    type: "confirm",
+    name: "useNextPort",
+    message: `Port ${DEFAULT_PORT} is already in use. Would you like to run the app on port ${finalPort}?`,
+  });
+  return shouldUseAnotherPort ? finalPort : null;
 };
 
 module.exports = async () => {
-  const port = await getPort();
+  const port = await getFinalPort();
   if (!port) {
-    console.log("Server Cancelled. Exiting...");
+    console.log("Development Server Cancelled. Exiting...");
     process.exit(0);
   }
   return merge(common, {
