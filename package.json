@@ -1,6 +1,6 @@
 {
   "name": "skeleton-package",
-  "version": "1.0.20",
+  "version": "1.0.0",
   "description": "a starter package for react components",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -11,7 +11,11 @@
     "build": "webpack --config webpack.config.prod.js"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Jacobo Rodicio González",
+    "email": "jacoborodicio@gmail.com",
+    "url": "https://jacoborodicio.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.25.8",
