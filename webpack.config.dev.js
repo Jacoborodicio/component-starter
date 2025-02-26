@@ -6,7 +6,6 @@ const detectPort = require("detect-port");
 const { input } = require("@inquirer/prompts");
 
 const DEFAULT_PORT = 3000;
-
 const getFinalPort = async () => {
   const finalPort = await detectPort(DEFAULT_PORT);
   if (finalPort === DEFAULT_PORT) {
@@ -16,9 +15,9 @@ const getFinalPort = async () => {
   const shouldUseAnotherPort = await input({
     type: "confirm",
     name: "useNextPort",
-    message: `Port ${DEFAULT_PORT} is already in use. Would you like to run the app on port ${finalPort}?`,
+    message: `Port ${DEFAULT_PORT} is already in use. Would you like to run the app on port ${finalPort}? (yes/no)`,
   });
-  return shouldUseAnotherPort ? finalPort : null;
+  return shouldUseAnotherPort.toLowerCase() === "yes" ? finalPort : null;
 };
 
 module.exports = async () => {

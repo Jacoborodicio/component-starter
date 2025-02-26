@@ -11,11 +11,6 @@
     "build": "webpack --config webpack.config.prod.js"
   },
   "keywords": [],
-  "author": {
-    "name": "Jacobo Rodicio González",
-    "email": "jacoborodicio@gmail.com",
-    "url": "https://jacoborodicio.com"
-  },
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.25.8",
