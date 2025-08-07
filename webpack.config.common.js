@@ -1,16 +1,16 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  entry: "./src/index.jsx",
+  entry: './src/index.jsx',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "index.js",
-    publicPath: "/",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js',
+    publicPath: '/',
     library: {
-      name: "HtmlEditor",
-      type: "umd",
+      name: 'HtmlEditor',
+      type: 'umd',
     },
-    globalObject: "this",
+    globalObject: 'this',
     clean: true,
   },
   module: {
@@ -19,12 +19,12 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
-        type: "asset/inline",
+        type: 'asset/inline',
         parser: {
           dataUrlCondition: {
             maxSize: 12 * 1024, // 30 KB
@@ -33,11 +33,11 @@ module.exports = {
       },
       {
         test: /\.(css)$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: ['.js', '.jsx'],
   },
 };
